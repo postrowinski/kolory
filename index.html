@@ -1,0 +1,66 @@
+<!doctype html>
+
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+
+  <title>Kolory</title>
+  <meta name="description" content="Aplikacja zmieniajaca kolory">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.8/dist/vue.js"></script>
+</head>
+
+<body>
+  <div id="app" :style="{ backgroundColor: activeColor }">
+      <div v-if="time" @click='resetTime' style='height: 100vh; width: 100%'></div>
+      <div v-else class='btn-container'>
+        <div v-for="button in buttons">
+          <button class='btn btn-primary' @click='setTime(button.time)'>{{button.time}}</button>
+        </div>
+    </div>
+  </div>
+<script>
+  const colors = ['purple', 'yellow', 'red', 'blue', 'orange'];
+  const app = new Vue({
+    el: '#app',
+    data: function() {
+      return {
+        time: null,
+        activeColor: '#ffffff',
+        currentInterval: null,
+        buttons: [
+          { time: 5 },
+          { time: 10 },
+          { time: 15 },
+          { time: 20 },
+          { time: 25 },
+          { time: 30 },
+        ]
+      }
+    },
+    methods: {
+      resetTime: function() {
+        this.time = null;
+        this.activeColor = '#ffffff';
+        clearInterval(this.currentInterval);
+      },
+      setTime: function(time) {
+        this.time = time;
+        this.changeColor(time);
+      },
+      changeColor: function(time) {
+        if (time) {
+          this.pickColor();
+          this.currentInterval = setInterval(() => this.pickColor(), time * 1000);
+        }
+      },
+      pickColor: function() {
+        this.activeColor = colors[Math.floor(Math.random() * colors.length)];
+      }
+    }
+});
+</script>
+</body>
+</html>
