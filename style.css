@@ -1,4 +1,6 @@
 #app {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 22px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -15,6 +17,7 @@
 }
 
 .btn {
-    margin: 10px;
-    width: 80px;
+    font-size: 20px;
+    margin: 15px;
+    width: 120px;
 }
