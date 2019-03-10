@@ -57,7 +57,11 @@
         }
       },
       pickColor: function() {
-        this.activeColor = colors[Math.floor(Math.random() * colors.length)];
+        const newColor = colors[Math.floor(Math.random() * colors.length)];
+        if (this.activeColor === newColor) {
+          return this.pickColor();
+        }
+        this.activeColor = newColor;
       }
     }
 });
