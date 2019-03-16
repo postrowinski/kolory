@@ -1,12 +1,6 @@
 #app {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 22px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    min-height: 100vh;
-    transition: background-color 0.7s ease;
 }
 
 .btn-container {
@@ -19,5 +13,20 @@
 .btn {
     font-size: 20px;
     margin: 15px;
-    width: 120px;
+    min-width: 120px;
+}
+
+.color-box {
+    width: 60px;
+    height: 60px;
+    border: 1px dashed red;
+    margin: 10px;
+}
+
+.main-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.7s ease;
 }

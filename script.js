@@ -1,8 +1,12 @@
-const colors = ['purple', 'yellow', 'red', 'blue', 'orange'];
+const defaultColors = ['purple', 'yellow', 'red', 'blue', 'orange' , 'green', 'pink', 'white', 'black']
 const app = new Vue({
     el: '#app',
     data: () => ({
+        colors: defaultColors,
         time: null,
+        selectOptionsButton: true,
+        defaultOptions: false,
+        manualOptions: false,
         activeColor: '#ffffff',
         currentInterval: null,
         buttons: [
@@ -16,12 +20,18 @@ const app = new Vue({
     }),
     methods: {
       resetTime: function() {
+        this.colors = defaultColors;
+        this.selectOptionsButton = true;
         this.time = null;
         this.activeColor = '#ffffff';
+        this.defaultOptions = false;
+        this.manualOptions = false;
         clearInterval(this.currentInterval);
       },
       setTime: function(time) {
         this.time = time;
+        this.defaultOptions = false;
+        this.manualOptions = false;
         this.changeColor(time);
       },
       changeColor: function(time) {
@@ -31,11 +41,25 @@ const app = new Vue({
         }
       },
       pickColor: function() {
-        const newColor = colors[Math.floor(Math.random() * colors.length)];
+        const newColor = this.colors[Math.floor(Math.random() * this.colors.length)];
         if (this.activeColor === newColor) {
           return this.pickColor();
         }
         this.activeColor = newColor;
+      },
+      setDefaultOptions: function() {
+        this.selectOptionsButton = false;
+        this.defaultOptions = true;
+      },
+      setManualOptions: function() {
+        this.selectOptionsButton = false;
+        this.manualOptions = true;
+      },
+      removeColor: function(color) {
+        const index = this.colors.indexOf(color);
+        if (this.colors.length > 2) {
+          this.colors = this.colors.filter((item, i) => i !== index);
+        }
       }
     }
 });

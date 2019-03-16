@@ -14,14 +14,34 @@
 </head>
 
 <body>
-  <div id="app" :style="{ backgroundColor: activeColor }">
-    <div v-if="time" @click='resetTime' style='height: 100vh; width: 100%'></div>
-      <div v-else>
+  <div id="app" style="min-height: 100vh">
+    <div class='main-container'> 
+      <div v-if="selectOptionsButton" class='btn-container'>
+          <button @click='setDefaultOptions' class='btn btn-primary'>Wybierz domyślne kolory</button>
+          <button @click='setManualOptions' class='btn btn-primary'>Wybierz kolory</button>
+      </div>
+      <div v-if="time" @click='resetTime' class='main-container' :style="{ backgroundColor: activeColor, width: '100vw' }"></div>
+      <div v-if="defaultOptions">
         <div class='text-center'>Zmiana koloru po:</div>
         <div class='btn-container'>
           <div v-for="button in buttons">
             <button class='btn btn-primary' @click='setTime(button.time)'>{{button.time}}</button>
           </div>
+          </div>
+      </div>
+      <div v-if="manualOptions">
+        <div class='text-center'>
+          Usuń kolor
+        </div>
+        <div class="btn-container">
+          <div v-for="color in colors" class='color-box' :style="{ backgroundColor: color }" @click="removeColor(color)"></div>
+        </div>
+        <div class='text-center'>Zmiana koloru po:</div>
+        <div class='btn-container'>
+          <div v-for="button in buttons">
+            <button class='btn btn-primary' @click='setTime(button.time)'>{{button.time}}</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
