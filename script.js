@@ -1,4 +1,4 @@
-const defaultColors = ['purple', 'yellow', 'red', 'blue', 'orange' , 'green', 'pink', 'white', 'black']
+const defaultColors = ['purple', '#ffff5a', 'red', 'blue', '#ff6d00' , 'green', '#d81b60', 'white', 'black']
 const app = new Vue({
     el: '#app',
     data: () => ({
